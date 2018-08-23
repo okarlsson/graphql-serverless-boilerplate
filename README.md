@@ -12,7 +12,7 @@ cd graphql-serverlesss-boilerplate
 npm install
 sls offline start
 ```
-Visit [localhost:3000/graphql](localhost:3000/graphql) to test your requests. Enter {hello} and click play to view the result of your query.
+Visit http://localhost:3000/graphql to test your requests. Enter {hello} and click play to view the result of your query.
 
 ## Deploy
 
