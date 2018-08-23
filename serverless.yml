@@ -1,0 +1,20 @@
+service: hello-world-service
+app: graphql-servierless-boilerplate
+provider:
+  name: aws
+  runtime: nodejs8.10
+#  region: YOUR_REGION
+  stage: dev
+plugins:
+    - serverless-offline  
+
+functions:
+  graphql:
+    handler: src/graphql.graphql
+    events:
+    - http:
+        path: graphql
+        method: any
+        cors: true
+
+

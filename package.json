@@ -1,0 +1,17 @@
+{
+  "name": "graphql-serverless-boilerplate",
+  "version": "1.0.0",
+  "description": "Minimalistic project for setting up an Hello World! project with GraphQl, Aws Lambda and Apollo Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oskar Karlsson",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless-offline": "^3.25.9"
+  },
+  "dependencies": {
+    "apollo-server-lambda": "^2.0.4"
+  }
+}
