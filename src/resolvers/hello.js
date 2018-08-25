@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     Query: {
         message: () => "Hello World!"
     }

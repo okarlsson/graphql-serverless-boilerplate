@@ -6,15 +6,26 @@ provider:
 #  region: YOUR_REGION
   stage: dev
 plugins:
-    - serverless-offline  
+    - serverless-offline
+    - serverless-webpack
+
+custom:
+  webpackConfig: './webpack.config.js'   # Name of webpack configuration file
+  includeModules: true   # Node modules configuration for packaging
 
 functions:
   graphql:
-    handler: src/graphql.graphql
+    handler: ./src/handler.handler
     events:
-    - http:
-        path: graphql
-        method: any
-        cors: true
+      - http:
+          path: graphql
+          method: post
+          cors: true
+  playground:
+    handler: ./src/handler.handler
+    events:
+      - http:
+          path: playground
+          method: get
 
 

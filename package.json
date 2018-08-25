@@ -9,9 +9,23 @@
   "author": "Oskar Karlsson",
   "license": "MIT",
   "devDependencies": {
-    "serverless-offline": "^3.25.9"
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "imports-loader": "^0.8.0",
+    "jest": "^23.5.0",
+    "serverless-offline": "^3.25.9",
+    "serverless-webpack": "^5.2.0",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
-    "apollo-server-lambda": "^2.0.4"
+    "apollo-server-express": "^2.0.4",
+    "express": "^4.16.3",
+    "graphql": "^0.13.2",
+    "graphql-playground-middleware-express": "^1.7.3",
+    "serverless-http": "^1.6.0"
   }
 }
