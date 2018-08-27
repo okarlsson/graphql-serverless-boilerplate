@@ -3,7 +3,7 @@ import serverless from "serverless-http";
 import graphiql from "graphql-playground-middleware-express";
 import { ApolloServer } from "apollo-server-express";
 import { typeDefs } from './types/hello';
-import { resolvers } from './resolvers/hello';
+import resolvers  from './resolvers/hello';
 
 
 const app = express();

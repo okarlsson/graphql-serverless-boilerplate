@@ -5,13 +5,27 @@ provider:
   runtime: nodejs8.10
 #  region: YOUR_REGION
   stage: dev
+  environment: 
+    AWS_XRAY_CONTEXT_MISSING: LOG_ERROR
 plugins:
     - serverless-offline
     - serverless-webpack
+    - serverless-dynamodb-local
 
 custom:
   webpackConfig: './webpack.config.js'   # Name of webpack configuration file
   includeModules: true   # Node modules configuration for packaging
+  dynamodb:
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+      seed: true
+    seed:
+      domain:
+        sources:
+        - table: HelloWorld
+          sources: [./seed-data/hello-world.json]
 
 functions:
   graphql:
@@ -28,4 +42,21 @@ functions:
           path: playground
           method: get
 
+resources:
+  Resources:
+    HelloWorldTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: N
+        ProvisionedThroughput:
+          ReadCapacityUnits: 10
+          WriteCapacityUnits: 10
+        TableName: 'HelloWorld'
 
