@@ -4,15 +4,26 @@ This is a simple boilerplate to get a GraphQl API producing "Hello World!" in Aw
 
 ## Getting started
 
-Requires `node` >= 8.10
+Requires `node` >= 8.10 and Java Runtime Engine >= 6.x
 
 ```
 git clone git@github.com:okarlsson/graphql-serverlesss-boilerplate.git
 cd graphql-serverlesss-boilerplate
 npm install
-sls offline start
+npm start
 ```
-Visit http://localhost:3000/graphql to test your requests. Enter {hello} and click play to view the result of your query.
+This will install and start a a local DynamoDB on your machine on localhost:8000 and start your GraphQl server on localhost:3000
+
+Visit http://localhost:3000/playground to test your requests. Enter the following query to se the Hello World! message from your new Dynamo table
+
+```
+{
+  helloWorld(id:1){
+    id,
+    message
+  }
+}
+```
 
 ## Deploy
 
@@ -28,7 +39,7 @@ aws_secret_access_key=XXXXX
 
 3) Run:
 ```
-serverless deploy
+sls deploy
 ```
 
 4) The cli will now print your endpoint url in the console, just copy and paste it into your web browser!
