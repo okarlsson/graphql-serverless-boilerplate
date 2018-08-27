@@ -12,4 +12,4 @@ const typeDefs = gql`
     }
 `;
 
-export { typeDefs }
+export default typeDefs;
