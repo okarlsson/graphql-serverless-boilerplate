@@ -14,7 +14,7 @@ plugins:
 
 custom:
   webpackConfig: './webpack.config.js'   # Name of webpack configuration file
-  includeModules: true   # Node modules configuration for packaging
+  webpackIncludeModules: true   # Node modules configuration for packaging
   dynamodb:
     start:
       port: 8000
