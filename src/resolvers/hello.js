@@ -34,8 +34,7 @@ const queryFunctions = {
         },
       },
       callback,
-    ))
-      .then(result => result.Items[0]);
+    ).then(result => result.Items[0]));
   },
 };
 
