@@ -36,7 +36,7 @@ functions:
           method: post
           cors: true
   playground:
-    handler: app/handlers/playground.handler
+    handler: ./src/playground.handler
     events:
       - http:
           method: get
