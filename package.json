@@ -18,7 +18,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "imports-loader": "^0.8.0",
-    "jest": "^23.5.0",
+    "jest": "^24.0.0",
     "serverless-dynamodb-local": "^0.2.33",
     "serverless-offline": "^3.25.9",
     "serverless-webpack": "^5.2.0",
