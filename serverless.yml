@@ -36,11 +36,11 @@ functions:
           method: post
           cors: true
   playground:
-    handler: ./src/handler.handler
+    handler: app/handlers/playground.handler
     events:
       - http:
-          path: playground
           method: get
+          path: playground
 
 resources:
   Resources:

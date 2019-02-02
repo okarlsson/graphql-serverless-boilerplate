@@ -1,6 +1,5 @@
 import express from 'express';
 import serverless from 'serverless-http';
-import graphiql from 'graphql-playground-middleware-express';
 import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './types/hello';
 import resolvers from './resolvers/hello';
@@ -14,6 +13,5 @@ const server = new ApolloServer({
 });
 
 server.applyMiddleware({ app });
-app.get('/playground', graphiql({ endpoint: '/graphql' }));
 
 export const handler = serverless(app);
