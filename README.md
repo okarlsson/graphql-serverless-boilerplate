@@ -1,6 +1,6 @@
 # Serverless-GraphQl Boilerplate
 
-This is a simple boilerplate to get a GraphQl API producing "Hello World!" in Aws Lambda.  
+This is a simple boilerplate to get a GraphQL API producing "Hello World!" in Aws Lambda.  
 
 ## Getting started
 
@@ -12,7 +12,7 @@ cd graphql-serverlesss-boilerplate
 npm install
 npm start
 ```
-This will install and start a a local DynamoDB on your machine on localhost:8000 and start your GraphQl server on localhost:3000
+This will install and start a a local DynamoDB on your machine on localhost:8000 and start your GraphQL server on localhost:3000
 
 Visit http://localhost:3000/playground to test your requests. Enter the following query to se the Hello World! message from your new Dynamo table
 
