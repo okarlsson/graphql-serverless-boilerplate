@@ -1,15 +1,14 @@
 import { gql } from 'apollo-server-express';
 
 const typeDefs = gql`
-    
-    type HelloWorld{
-        id: Int!
-        message: String
-    }
+  type HelloWorld {
+    id: Int!
+    message: String
+  }
 
-    type Query {
-        helloWorld(id: Int!): HelloWorld
-    }
+  type Query {
+    helloWorld(id: Int!): HelloWorld
+  }
 `;
 
 export default typeDefs;

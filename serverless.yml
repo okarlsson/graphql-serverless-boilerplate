@@ -3,29 +3,36 @@ app: graphql-servierless-boilerplate
 provider:
   name: aws
   runtime: nodejs8.10
-#  region: YOUR_REGION
-  stage: dev
-  environment: 
-    AWS_XRAY_CONTEXT_MISSING: LOG_ERROR
+  region: eu-central-1
+  stage: ${opt:stage, env:SLS_STAGE, 'local'}
+  environment:
+    REGION: ${self:provider.region}
+    ENV: ${self:provider.stage}
+
 plugins:
-    - serverless-offline
-    - serverless-webpack
-    - serverless-dynamodb-local
+  - serverless-offline
+  - serverless-webpack
+  - serverless-dynamodb-local
 
 custom:
-  webpackConfig: './webpack.config.js'   # Name of webpack configuration file
-  webpackIncludeModules: true   # Node modules configuration for packaging
+  webpackConfig: './webpack.config.js' # Name of webpack configuration file
+  webpackIncludeModules: true # Node modules configuration for packaging
   dynamodb:
+    stages:
+      - local
     start:
       port: 8000
       inMemory: true
       migrate: true
       seed: true
+      heapInitial: 200m
+      heapMax: 1g
+      convertEmptyValues: true
     seed:
       domain:
         sources:
-        - table: HelloWorld
-          sources: [./seed-data/hello-world.json]
+          - table: HelloWorld
+            sources: [./seed-data/hello-world.json]
 
 functions:
   graphql:
@@ -48,15 +55,12 @@ resources:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         KeySchema:
-          -
-            AttributeName: id
+          - AttributeName: id
             KeyType: HASH
         AttributeDefinitions:
-          -
-            AttributeName: id
+          - AttributeName: id
             AttributeType: N
         ProvisionedThroughput:
           ReadCapacityUnits: 10
           WriteCapacityUnits: 10
         TableName: 'HelloWorld'
-

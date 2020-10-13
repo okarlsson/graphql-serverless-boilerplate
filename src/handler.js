@@ -4,7 +4,6 @@ import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './types/hello';
 import resolvers from './resolvers/hello';
 
-
 const app = express();
 const server = new ApolloServer({
   typeDefs,
@@ -14,4 +13,4 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app });
 
-export const handler = serverless(app);
+exports.handler = serverless(app);

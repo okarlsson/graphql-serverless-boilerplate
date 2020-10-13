@@ -1,45 +1,35 @@
-import dynamodb from 'serverless-dynamodb-client';
+import { DynamoDB } from 'aws-sdk';
+import * as AWS from 'aws-sdk';
 
-const AWSXRay = require('aws-xray-sdk');
-const AWS = AWSXRay.captureAWS(require('aws-sdk'));
-
-let dynamoClient;
-
-if (process.env.NODE_ENV === 'production') {
-  dynamoClient = new AWS.DynamoDB.DocumentClient();
-} else {
-  dynamoClient = dynamodb.doc;
-}
-
-function promisify(func) {
-  return () => new Promise((resolve, reject) => {
-    func((error, result) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(result);
-      }
-    });
+if (process.env.STAGE === 'local') {
+  AWS.config.update({
+    accessKeyId: 'not-important',
+    secretAccessKey: 'not-important',
+    region: 'local',
   });
 }
 
-const queryFunctions = {
-  getHelloWorld(args) {
-    return promisify(callback => dynamoClient.query(
-      {
-        TableName: 'HelloWorld',
-        KeyConditionExpression: 'id = :v1',
-        ExpressionAttributeValues: {
-          ':v1': args.id,
-        },
+const dynamoClient = new DynamoDB.DocumentClient({
+  region: process.env.REGION,
+  endpoint: process.env.ENV === 'local' ? 'http://localhost:8000' : undefined,
+});
+
+const getHelloWorld = async ({ id }) => {
+  const result = await dynamoClient
+    .query({
+      TableName: 'HelloWorld',
+      KeyConditionExpression: 'id = :v1',
+      ExpressionAttributeValues: {
+        ':v1': id,
       },
-      callback,
-    )).then(result => result.Items[0]);
-  },
+    })
+    .promise();
+
+  return result.Items[0];
 };
 
 export default {
   Query: {
-    helloWorld: (root, args) => queryFunctions.getHelloWorld(args),
+    helloWorld: (root, args) => getHelloWorld(args),
   },
 };
